@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지 및 멀티미디어 관련 태그</title>
+</head>
+<body>
+    <h1>이미지 관련 태그</h1>
+    <!--
+        <img src="이미지경로" alt="설명문구" width="가로크기" height="세로크기">
+    -->
+    <h3>* src속성과 alt속성</h3>
+    <img src="../resources/image/passion.jpg" alt="열정맨사진" width="340" height="340">
+    <br>
+    <img src="../resources/image/passion2.jpg" alt="갓생살기" width="340" height="340">
+    <hr>
+
+    <h3>* width와 height 속성</h3>
+    <p>
+        이미지의 가로, 세로길이는 조정이 가능하며, 고정길이(px) 혹은 가변길이(%)로 
+        지정할 수 있다.
+    </p>
+
+    <h4>고정길이단위 (px) : 화면사이즈(ViewPort)가 조정되더라도 이미지 크기의 변동이 없다</h4>
+    <img src="../resources/image/nuguri1.gif" width="200px" height="150px">
+    <img src="../resources/image/nuguri2.gif" width="200px" height="150px">
+    <img src="../resources/image/nuguri3.gif" width="200px" height="150px">
+
+    <h4>가변길이단위 (%) : 화면 사이즈에 변화에 따라 이미지 크기도 함께 변화한다.</h4>
+    <img src="../resources/image/animal1.gif" width="100%" height="250">
+    <img src="../resources/image/animal2.gif" width="100%" height="250">
+    <img src="../resources/image/animal3.gif" width="100%" height="250">
+
+    <br>
+
+    <h4>반응형 이미지 : 화면사이즈에 따라 보여줄 이미지를 지정</h4>
+    <picture>
+        <!-- 화면 사이즈가 600px이하인 경우 보여줄 이미지 -->
+        <source srcset="../resources/image/flower.jpg" media="(max-width:600px)">
+        <!-- 화면 사이즈가 1200px이하인 경우 보여줄 이미지 -->
+        <source srcset="../resources/image/flower2.jpg" media="(max-width:1200px)">
+        <source srcset="../resources/image/flower3.jpg"> <!-- 그 외-->
+        <img src="" alt="꽃">
+    </picture>
+
+    <h3>이미지 맵</h3>
+    <!-- usemap은 이미지맵을 참조하는데 필요한 속성-->
+    <img src="../resources/image/passion2.jpg" width="500" usemap="#mymap">
+    <map name="mymap">
+        <!-- shape = rect | circle | poly
+            좌표의 모양, 링크, 대체텍스트를 지정해야 한다.
+        -->
+        <area shape="rect" coords="0,0,250,504" href="http://google.com" alt="구글로 이동" >    
+        <area shape="rect" coords="250,0,500,504" href="http://naver.com" alt="네이버로 이동" >    
+    </map>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

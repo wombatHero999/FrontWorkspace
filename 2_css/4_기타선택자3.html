@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기타선택자3</title>
+    <link rel="stylesheet" href="./css/4_selector.css">
+</head>
+<body>
+
+    <h1>기타 선택자</h1>
+
+    <h3>:only-child</h3>
+    <pre>
+        특정 요소의 자식이 하나 밖에 없는 요소를 선택
+    </pre>
+
+    <div id="test1">
+        <p>자식1</p>
+        <pre>자식2</pre>
+    </div>
+
+    <hr>
+
+    <h3>:only-of-type</h3>
+    <pre>
+        특정 요소의 자식 중 선택한 요소와 같은 자식 요소가 하나만
+        있을 경우 선택
+    </pre>
+
+    <div id="test2">
+        <p>자식1</p>
+        <pre>자식2</pre>        
+    </div>
+
+    <hr>
+
+    <h3>:empty</h3>
+    <pre>
+        자식요소가 없는 부모요소를 선택
+        
+        - 자식요소의 개념
+        - 태그, 글자(텍스트요소) 모두 자식 요소다.
+    </pre>
+
+    <div id="test3">
+        <p><strong>하이</strong></p>
+        <p>ㅎㅇ</p>
+        <p> </p>
+        <p></p>
+    </div>
+
+    <hr>
+
+    <h3>여러 선택자를 동시에 사용</h3>
+    <pre>
+        같은 스타일을 지정하고 싶으나, 요소를 선택하는 선택자가
+        일치하지 않을 때 사용
+        선택자1, 선택자2, 선택자3, ... {공통 css코드}
+    </pre>
+    <div id="test4-1">테스트1</div>
+    <div id="test4-2">테스트2</div>
+    <div class="test4-3">테스트3</div>
+
+    <hr>
+
+    <h3>특정 요소 내부에 있는 특정 클래스 선택하기</h3>
+    <ul id="test5-1">
+        <li class="c5">1</li>
+        <li class="c5">2</li>
+        <li class="c5">3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+
+    <hr>
+
+    <h2>클래스가 여러개인 요소를 선택</h2>
+    <div class="test6">테스트</div>
+    <div class="test6 c6">테스트</div>
+    <div class="c6">테스트</div>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

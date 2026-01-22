@@ -1,0 +1,71 @@
+/* 일반 구조 선택자 */
+/* :first-child : 형제관계의 요소 중 첫번째 요소를 선택 */
+#test1 > p:first-child{
+    background-color: red;
+    color: white;
+}
+
+/*
+    :last-child : 형제관계의 요소 중 마지막 요소를 선택
+*/
+#test1 > pre:last-child{
+    background-color: orange;
+}
+
+/* nth-child(수열) : 형제관계의 요소 중 지정된 수열번째 요소를
+모두 선택하는 선택자 */
+#test1 > p:nth-child(2){
+    background-color: yellow;
+}
+
+/* 홀수번째 p태그 요소 선택 */
+#test1 > p:nth-child(2n -1){
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#test1 > p:nth-child(even){
+    border : 1px solid black;
+}
+
+/* :nth-last-child(수열)
+    - 형제관계 요소 중 "뒤에서부터" 지정된 수열번째 요소를 선택
+*/
+#test1 > p:nth-last-child(2){
+    color:hotpink;
+}
+
+/* 2. 형태 구조 선택자 */
+/* :first-of-type : "같이 선택된 형제요소들" 중 첫번째 요소 */
+#test2 > p:first-of-type{
+    background-color: orange;
+}
+
+#test2 > pre:first-of-type{
+    background-color: blue;
+}
+
+/* :last-of-type */
+#test2 > p:last-of-type{
+    background-color: skyblue;
+}
+
+/* :nth-of-type */
+#test2 > p:nth-of-type(2n){
+    font-size: 30px;
+}
+
+/* :nth-last-of-type */
+#test2 > p:nth-last-of-type(odd){
+    background-color: red;
+}
+
+/* 부정선택자*/
+/* #test3의 자식 li요소들 중 3의 배수를 제외한 나머지 요소만 선택 */
+#test3 > li:nth-of-type(3n){
+    background-color: pink;
+}
+
+#test3 > li:not(li:nth-of-type(3n)){
+    background-color: hotpink;
+}

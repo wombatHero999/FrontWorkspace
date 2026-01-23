@@ -1,0 +1,62 @@
+.flex-container{
+    height: 400px;
+    background-color: #ddd;
+    display: flex;
+}
+
+/* 
+    order
+     - item의 순서를 지정하는 속성
+     - 기본값은 0, 음수/양수 모두 제시 가능
+*/
+.order1{order:1;}
+.order2{order:2;}
+.order3{order:3;}
+.order4{order:4;}
+
+/*
+    flex-grow
+     - 지정된 비율에 맞게 요소를 팽창시키는 속성
+     - 기본값 0
+*/
+.grow1{flex-grow:1;}
+.grow2{flex-grow:2;}
+.grow3{flex-grow:3;}
+.grow4{flex-grow:4;}
+
+/*
+    flex-shrink
+     - 레이아웃이 줄어들 때 item이 수축하는 정도를 지정하는 속성
+     - 기본값은 1
+ */
+.shrink0{flex-shrink:0;}
+.shrink1{flex-shrink:1;}
+.shrink2{flex-shrink:2;}
+.shrink3{flex-shrink:3;}
+
+
+/*
+    flex-basis
+     - 중심축 방향으로의 기본 점유율(크기)를 지정하는 속성
+     - 각종 크기 단위 px, % , vh , vw, em ...사용가능
+*/
+/* .flex-container{
+    flex-direction: column;
+} */
+
+.basis-150px{flex-basis:150px;}
+.basis-10{flex-basis:10%;}
+.basis-25{flex-basis:25%;}
+.basis-50{flex-basis:50%;}
+
+/*
+    flex
+     - item에 사용하는 속성으로, grow,shrink,basis를
+     모두 합쳐둔 속성
+*/
+.flex1{flex:0 0 50%;}
+
+/* align-self */
+.self-start{ align-self:flex-start;}
+.self-end{align-self:flex-end;}
+.self-center{align-self:center;}

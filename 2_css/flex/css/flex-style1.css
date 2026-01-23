@@ -1,0 +1,101 @@
+/* flex container에 적용되는 스타일들 */
+.flex-container{
+    height: 700px;
+    background-color: #ddd;
+
+    display: flex;
+    /*
+        flex-container에 지정 가능한 속성으로, 내부 item들이 자동으로 공백이
+        사라지면서 content영역만큼의 크기를 가진채로 중심축 기준 정렬이 된다.
+    */
+
+    /*
+        flex-direction
+         - flex-container 전용속성
+         - 중심축의 방향과 시작 위치를 지정하는 속성
+    */
+
+ 
+    flex-direction: row-reverse;
+    
+    flex-direction: column;
+    
+    flex-direction: column-reverse;
+
+    /* 행방향(기본값) */
+    flex-direction: row;
+
+    /* flex-wrap */
+    /* 
+        내부 item들을 "포장"하는 속성
+        item들이 강제로 한 줄에 배치되게 할 것인지, 한줄을 벗어나 여러줄로 배치되게
+        할것인지를 지정
+    */
+
+    flex-wrap : nowrap; /* 기본값(한줄배치) */
+
+    flex-wrap : wrap;
+
+    flex-wrap : wrap-reverse; /* 요소를 여러줄로 배치 + 뒤에서부터 배치를 시작 */
+
+    /* flex-flow
+        - flex-container의 줌심축의 방향, 순서와 여러줄로 배치할지에 대한 여부를
+          한번에 설정하는 속성
+        - flex-direction + flex-wrap을 합친 속성
+    */
+
+    flex-flow : row-reverse wrap;
+    flex-flow : row nowrap;
+
+    /* 
+        justify-content
+         - 내용을 조정하다
+         - 중심축 방향으로 item의 정렬방법을 조정하는 속성
+    */
+
+    justify-content : flex-start; /* 중심축의 시작지점을 기준으로 정렬(기본값) */
+    justify-content : flex-end;
+    justify-content : center;
+
+    /* item주위에 중심축방향 양쪽으로 일정한 크기의 공간을 추가하여 정렬 */
+    justify-content: space-around;
+
+    justify-content: space-evenly;
+
+    justify-content : space-between;
+
+    /*
+        align-items
+         - item들을 교차축 방향으로 정렬하는 방법을 지정하는속성
+    */
+
+    align-items:stretch;
+
+    /* 교차축의 시작지점을 기준으로 정렬  */
+    align-items:flex-start;
+    align-items: flex-end;
+    align-items: center;
+
+    /* item내부 content요소가 모두 한줄에 배치될 수 있또록
+    하는 설정 */
+    align-items: baseline;
+}
+
+.item2{padding: 10px;}
+.item3{padding:20px;}
+.item4{padding:30px}
+
+#con{
+    width: 450px;
+    height: 450px;
+
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}
+
+#center{
+    width: 80px;
+    height: 80px;
+    background-color: pink;
+}

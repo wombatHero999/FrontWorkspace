@@ -1,0 +1,20 @@
+.flex-container{
+    height: 75vh;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    /* 
+        align-content
+         - 교차축 방향으로 포장된 item들을 정렬하는 방법
+         - 단, flex-wrap속성이 wrap혹은 wrap-reverse일때만 가능
+         - 속성값으로는 jusitify-content의 모든 값을 사용할수 있다.
+    */
+    align-content: flex-start;
+    align-content: flex-end;
+    align-content: center;
+
+    align-content:space-around;
+    align-content:space-evenly;
+    align-content:space-between;
+}

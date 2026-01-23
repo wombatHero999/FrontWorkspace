@@ -1,0 +1,42 @@
+/* 크롬브라우저 기준 기본 끌꼴 크기 16px */
+#size-test > li:nth-child(1){font-size:24px;}
+#size-test > li:nth-child(2){font-size:18pt;}
+#size-test > li:nth-child(3){font-size:150%;}
+#size-test > li:nth-child(4){font-size:1.5em;}
+
+#weight-test > li {font-size: 34px;}
+
+#weight-test > li:nth-child(1){font-weight: 600;}
+#weight-test > li:nth-child(2){font-weight: bold;}
+#weight-test > li:nth-child(3){font-weight: bolder;}
+#weight-test > li:nth-child(4){font-weight: lighter;}
+#weight-test > li:nth-child(5){font-weight: normal;}
+
+/* font-family */
+.cls > li{font-size:24px}
+
+#family-test1 > li:nth-child(1){
+    font-family: '궁서';
+}
+
+#family-test1 > li:nth-child(2){
+    font-family : '경민체','동희체','굴림체';
+}
+
+#family-test2 > li:nth-child(1) {
+  font-family: "Noto Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+#family-test2 > li:nth-child(2) {
+  font-family: "Noto Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}

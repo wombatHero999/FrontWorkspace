@@ -92,3 +92,16 @@ document.querySelector("#name-selector").onclick = function(){
  * - 태그명으로 접근
  * - name값으로 접근
  */ 
+
+document.querySelector("#email-confirm").onclick = function(){
+    //      * - 아이디로 접근
+    var userEmail = document.querySelector("#userEmail");
+    console.log(userEmail.value);
+    //  * - 태그명으로 접근
+    var inputArr = document.querySelectorAll("input");
+    console.log(inputArr[7].value);
+
+    //  * - name값으로 접근
+    var userEmail2 = document.querySelector("input[name=userEmail]");
+    console.log(userEmail2.value);
+};

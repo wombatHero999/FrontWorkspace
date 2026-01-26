@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>변수의 유효범위</h1>
+    <input type="button" value="전역 | 지역" onclick="test1();">
+    <input type="button" value="scope" onclick="test2();">
+    <input type="button" value="개선" onclick="test3();">
+
+    <script>
+        var a; // 전역변수(window객체의 속성으로 등록)
+        a = 100;
+
+        //let a2; // es6에 등장한 변수
+        //const a3 = 1; // 상수값 저장시 사용(es6에 등장). 전역변수.
+        function test1(){
+            var a = "아"; //지역
+            console.log(a); // 아
+            console.log(this.a); // 100 
+            console.log(window.a); // 100
+            // this == window
+            // 일반함수에서 this는 window를 가리킨다.
+
+            // var변수의 단점
+            var a = true; // 변수 중복선언 가능
+            b = 123; // var없이 변수 선언 가능. 단, 항상 전역변수(window)로 등록
+            console.log(window.b);
+        }
+
+        /* 
+            scope : 유효범위
+            java의 변수 scope는 block scope.
+            javascript의 변수(var) scope는 function scope를 가지고 있다.
+            * javascript의 변수 중 const,let은 자바와 동일한 block scope를 가지고 있음.
+        */
+       function test2(){
+            var x = 10;
+            if(true){
+                // 함수내부에 선언한 변수는 어떤위치에서든 접근 가능.
+                var x2 = 10;
+            }
+
+            for(var i =0; i< 10; i++){
+
+            }
+            console.log("i", i);
+
+
+            console.log("x",x); // 10
+            console.log("x2",x2); // 10
+       }
+       // console.log(x); // 10? null?
+
+    </script>
+
+    <script>
+        //console.log(a)
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 개요</title>
+</head>
+<body>
+    <h1>Javascript 개요</h1>
+    <pre>
+        - html의 조작과 변경을 담당하는 언어
+        - html로 웹문서의 구조를 만들고, CSS로 디자인을 정의하며, js로 웹페이지상의 이벤트가 발생했을 때 실행할
+          동작을 정의한다. 
+        - 웹 브라우저에서 실행 가능한 인터프리터 방식의 스크립트 언어 
+        * 인터프리터 : 컴파일 없이 한줄 씩 실행되는 언어
+
+        장점
+         - 코드를 작성한 후 바로 실행결과를 볼 수 있기 때문에 간단한 개발에 용이하다. 
+         - 클래스, 접근제한자, 반환형 등 고급개념 없이 바로 사용가능 하기 때문에 초보자가 다루기 쉽다. 
+         - 모든 웹브라우저의 표준 스크립트 언어이기 때문에 범용성이 넓다. 
+
+        단점
+         - 컴파일방식의 언어보다 실행 속도가 느리다. 
+         - 큰규모의 어플리케이션 개발에 있어서 타입안전성이 부족하다.  
+    </pre>
+
+    <h1>1. 자바스크립트 사용방법</h1>
+    <ol>
+        <li>
+            inline : 이벤트를 부여하고자 하는 요소 내에 소스코드를 작성하는 방법
+            <input type="button" value="실행1" onclick="console.log('안녕')" >
+        </li>
+        <li>
+            internal : html문서 내에 script태그 영역에 자바스크립트를 작성하는 방법
+            <input type="button" value="실행2" onclick="abc();">
+        </li>
+        <li>
+            external : 소스코드를 별도의 .js 파일로 작성하여 불러오는 방법
+            <input type="button" value="실행3" onclick="test();">
+        </li>
+    </ol>
+
+    <button id="btn">콘솔창 출력</button>
+
+    <script>
+        /* 순수 내부방식만으로 요소에 이벤트 부여하기.  */
+
+        // "어떤 요소에" ,"어떤 이벤트가" 발생할지를 정하고,
+        // 그 이벤트가 발생했을때 실행할 "동작(함수)"을 정의한다.
+        // 요소 선택함수
+        //document.querySelector("#btn").onclick = abc;
+        document.querySelector("#btn").onclick = function /* abc2 */ (){
+            console.log('하이1');
+        };
+
+        /* 
+          자바스크립트 소스코드를 기술할 수 있는 영역  
+        */
+        // 매개변수 없는 단순 함수 만들기
+        function abc(){
+            console.log("버튼2 클릭");
+        }
+    </script>
+
+    <h2>2. 자바스크립트의 자료형</h2>
+    <input type="button" value="자료형출력" onclick="dataType();">
+
+    <script>
+        function dataType(){
+            // 자바스크립트에서는 변수 선언시 
+            // 3가지 키워드를 사용한다. (var(es5), let, const)
+            var i; // undefined : 값을 초기화하지 않았을 때의 기본값.
+            console.log(i, typeof(i));
+
+            i = 100; // 숫자형 변수
+            i = 3.14; // 정수든 실수든 number자료형
+            console.log(i, typeof(i));
+
+            i = 'js is fun';
+            i = "안녕"; 
+            console.log(i, typeof(i));
+
+            i = true;
+            console.log(i, typeof(i));
+
+            // 객체
+            // 배열도 하나의 객체처럼 사용한다.
+            // List<Object>와 비슷. 
+            i = [1,2,3,'안녕'];    
+            console.log(i, typeof(i) , Array.isArray(i));
+
+            // 맵형태의 객체
+            // HashMap<String,Object>
+            i = {
+                name : '홍길동',
+                age : 30,
+                hobby : ['축구','농구']
+            };
+            console.log(i , typeof(i) , Array.isArray(i))
+
+            // 함수형 ★
+            // 자바스크립트는 함수를 값으로써 취급하며, 자료형으로도 사용가능
+            i = function (x, y) {
+                return x + y;
+            };
+            console.log(i, typeof(i));
+        }
+    </script>
+
+
+
+
+
+
+    <script src="./js/1_sample.js"></script>
+</body>
+</html>

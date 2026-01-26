@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+        border: 1px solid #000;
+        border-collapse: collapse;
+        margin: 30px 0;
+        }
+        th, td {
+        border: 1px solid #000;
+        padding: 10px;
+        text-align: center;
+        }
+        td.on {
+        background-color: royalblue;
+        color: #fff;
+        }
+    </style>  
+
+</head>
+<body>
+    <h1>셀렉터(Get Element)</h1>
+    <ul>
+        <li id="myli1" class="group">요소1</li>
+        <li id="myli2">요소2</li>
+        <li id="myli3" class="group">요소3</li>
+        <li id="myli4">요소4</li>
+        <li id="myli5" class="group">요소5</li>
+    </ul>
+
+    <input type="button" id="id" value="btn1">
+    <input type="button" id="tag-name" value="btn2">
+    <input type="button" id="class-name" value="btn3">
+
+    <fieldset style="margin-top: 30px;">
+      <legend>취미</legend>
+      <input type="checkbox" name="hobby" id="hobby1" value="음악감상"><label for="hobby1">음악감상</label>
+      <input type="checkbox" name="hobby" id="hobby2" value="영화시청"><label for="hobby2">영화시청</label>
+      <input type="checkbox" name="hobby" id="hobby3" value="게임"><label for="hobby3">게임</label>
+      <br><br>
+      <input type="button" value="name" id="name-selector">
+    </fieldset>
+
+    <fieldset>
+      <legend>이메일 입력</legend>
+      <input type="email" name="userEmail" id="userEmail" placeholder="이메일을 입력하세요.">
+      <input type="button" value="확인" id="email-confirm" >
+    </fieldset>
+
+
+
+
+
+
+
+    <script src="./js/2_selector.js"></script>
+</body>
+</html>

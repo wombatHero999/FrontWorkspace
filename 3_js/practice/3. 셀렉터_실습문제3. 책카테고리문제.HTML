@@ -100,14 +100,25 @@
             체크 박스 선택 후 카테고리 선택을 누르면 하단 네모에 선택한 카테고리 출력.
         */
         function printCategory(){
-            
+            area.innerHTML = "";// 내용 초기화
+
+            // 체크한 체크박스들 가져오기
+            var categorys = document.querySelectorAll("input[name=category]:checked");
+            for(let i =0; i<categorys.length; i++){
+                area.innerHTML += categorys[i].value+" ";
+            }
         }
 
         /* 2번기능 (전체선택기능).
          전체선택 체크박스 선택시 모든 카테고리가 선택되며, 선택 해제서 모든 체크박스가 선택 해제. 
         */
         function selectAll(){
-            
+            var checked = document.querySelector("#selectAll").checked;
+            var categorys = document.querySelectorAll("input[name=category]");
+
+            for(let i =0; i<categorys.length; i++){
+                categorys[i].checked = checked;
+            }
         }
 
         /* 3번기능 (카테고리 체크박스 선택시 전체선택 체크박스 제어 기능)
@@ -115,7 +126,12 @@
            하나라도 선택이 되어있지 않으면 전체선택 체크박스는 선택 해제
         */
         function checkCategory(checkbox){
-           
+            // 전체선택 체크박스
+            var selectAll = document.querySelector("#selectAll");
+            var checkboxes = document.querySelectorAll("input[name=category]");
+            var checkedboxes =document.querySelectorAll("input[name=category]:checked"); 
+
+            selectAll.checked = checkboxes.length == checkedboxes.length;
         }
     </script>
 </body>

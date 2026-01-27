@@ -39,6 +39,8 @@
         */
        function test2(){
             var x = 10;
+            //var x2;
+            //var i;
             if(true){
                 // 함수내부에 선언한 변수는 어떤위치에서든 접근 가능.
                 var x2 = 10;
@@ -54,14 +56,35 @@
             console.log("x2",x2); // 10
        }
        // console.log(x); // 10? null?
-
     </script>
 
     <script>
         //console.log(a)
     </script>
 
+    <h1>Hoisting</h1>
+    <script>
+        // var b; // var키워드 변수는 hoisting된다.
+        // function foo; //함수는 호이스팅된다.
+        console.log(b); // undefined
 
+        var b = "안녕";
+        foo();
+
+        // 함수도 hoisting된다.
+        // 함수선언식
+        function foo(){
+            console.log("foo");
+        }
+
+        // 함수표현식으로 생성한 함수는
+        // 호이스팅되지 않는다.
+        // bar(); 함수표현식으로 작성한 함수는 호이스팅불가.
+        var bar = function(){
+            console.log('bar');
+        };
+        bar();
+    </script>
 
 
 

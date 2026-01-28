@@ -54,11 +54,19 @@
 	</form>
 	<script type="text/javascript">
 		function showVal(){
-			
+			pVal.innerText = productLevel.value;
 		}
 
 		function printProduct(){
+			var result = "상품명 : "+productName.value+"\n"
+					   + "납품등급 : " + productLevel.value+"\n"
+					   + "납품수량 : "+ productAmount.value+"\n"
+					   + "기타사항 : "+ message.value +"\n" 
 
+			if(confirm(result+"입력하신 내용이 맞습니까?")){
+				var area = document.querySelector("#result");
+				area.innerHTML = result.replaceAll("\n","<br>");
+			}
 		}
   </script>
 </body>

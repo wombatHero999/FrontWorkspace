@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #area {
+            margin: 30px 10px;
+        }
+        mark {
+            background-color: magenta;
+        }
+    </style>
+</head>
+<body>
+    <h1>Regular Expression</h1>
+    <input type="button" value="기본" onclick="test1();">
+    <input type="button" value="flag - g | i | m" onclick="test2();">
+    <input type="button" value="anchor - ^ | $" onclick="test3();">
+    <input type="button" value="@실습문제" onclick="test4();">
+    <input type="button" value="." onclick="test5();">
+    <input type="button" value="[]" onclick="test6();">
+    <input type="button" value="@실습문제" onclick="test7();">
+    <input type="button" value="\d \w \s" onclick="test8();">
+    <input type="button" value="( | )" onclick="test9();">
+    <input type="button" value="escaping" onclick="test10();">
+    <input type="button" value="* + ?" onclick="test11();">
+    <input type="button" value="{n,m}" onclick="test12();">
+    <input type="button" value="look around" onclick="test13();">
+    <div id="area"></div>
+
+    <script>
+        var mark = "<mark>$&</mark>";
+        function test1(){
+            /* 정규표현식 
+                 - 특정 규칙을 가진 문자열 집합에 대한 형식언어
+                 - 유효성검사, 검색, 문자열치환작업등에서 효율적인 처리가 가능
+                 - 간결한 코드를 만드는 표현식 숙지가 쉽지 않으며, 언어독립적
+                 으로 동작한다.
+            */
+           // 정규식 객체생성
+           var re1 = /a/g;
+           var re2 = new RegExp(/[0-9]/);
+           var re3 = new RegExp("[a-z]");
+
+           // 정규표현식의 메서드
+           //  test() : boolean
+           console.log(re1.test('abcde'));
+           console.log(re1.test('bcdef'));
+
+           console.log(re2.test('honggd123')); 
+           console.log(re2.test('honggd!!')); 
+
+           // 문자열의 정규식 활용 매서드
+           // match
+           console.log('cba'.match(re1));
+
+           // search : 일치하는 인덱스
+           var str = 'asksawiqkaxlzm';
+           console.log("1회 ", re1.exec(str));
+           console.log("2회 ",re1.exec(str));
+           console.log("3회 ",re1.exec(str));
+           console.log("4회 ",re1.exec(str));
+           
+           // replace 
+           console.log('cadqbakda'.replace(/a/g, 'A'));
+        }
+
+
+        /* 
+            flag문자
+             - g(global) : 정규식에 대한 전역비교를 수행하는 기호
+             - i(ignore) : 영문자중 대소문자를 구분하지 않고 비교를 수행
+             - m(multi-line) : 개행문자를 기준으로 여러줄이 있는 경우, 줄단위 비교를 수행
+        */  
+        function test2(){
+            var str = "Javascript jQuery Ajax";
+
+            // $&는 매칭된 text를 가리키는 키워드
+            area.innerHTML =
+             str.replace(/a/gi,"<mark>$&</mark>"); 
+
+        }
+
+        /* 
+            anchor문자
+             - ^ : 문자열 시작
+             - $ : 문자열 끝
+        */
+        function test3(){
+            var str = "Javascript\nxxx\njQuery\nAjax";
+            area.innerHTML = 
+                //str.replace(/^j/igm,"<mark>$&</mark>");
+                str.replace(/x$/igm, "<mark>$&</mark>");
+        }
+
+        /**
+         * 사용자로부터 문자열을 입력받고(prompt),
+         * k로 시작하면서, h로 끝나는 경우에는 잘하셨습니다.
+         * 아닌 경우, 적합한 문자가 아닙니다. 경고창을 띄우세요.
+         * 
+         * ex) kh -> o, k2h -> o, kxxxxxxxxxxxxxh -> o
+         * ah -> x, kddddd -> x
+         */ 
+        function test4(){
+            var str = prompt("문자열을 입력하세요..");
+            var re1 = /^k/gmi;
+            var re2 = /h$/gmi;
+
+            if(re1.test(str) && re2.test(str)){
+                alert("잘하셨습니다.");
+            }else{
+                alert("적합한 문자가 아닙니다");
+            }
+        }
+
+        /* 
+            DOT
+            . 포인트 임의의 "한글자"
+        */
+        function test5(){
+            var re1 = /^...$/;
+            console.log(re1.test('ab'));
+            console.log(re1.test('abc'));
+            console.log(re1.test('abcd'));
+
+            var re2 = /a.b/g;
+            area.innerHTML = 
+                "ab aab aaab".replace(re2,mark);
+
+            var re3 = /in..$/;   
+            ["goingo","goin","gointo","going"]
+            .forEach(function(s){
+                console.log(s, re3.test(s));
+            });
+            
+            var re4 = /^c...k$/; // c로시작하고 중간에 3글자 들어가고 k로 끝나고
+            ["ck","cbk","cbak","cbawk","caaaak"]
+            .forEach(function(s){
+                console.log(re4.test(s));
+            })
+        }
+
+        function test6(){
+            /* 
+             []
+              - 한글자를 의미하며, 문자의 범위를 나타낸다
+              - 대괄호안에 사용되는 ^는 특정문자는 제외하겠다는 의미를 가진다.
+            */
+            var s = "Javascript jquery Ajax 12345";
+
+            // a또는 j문자를 찾아서 mark로 변환
+            area.innerHTML = 
+                //s.replace(/[aj]/g , mark);
+            // a또는 j가 아닌 문자를 mark로 변환
+                //s.replace(/[^aj]/g , mark);
+
+            // 영어 대문자패턴을 모두 찾아서 mark로변환
+            //s.replace(/[A-Z]/g , mark);     
+            //s.replace(/[0-9]/g , mark);     
+
+            // 영어대문자+숫자패턴
+            s.replace(/[A-Z0-9a-z.*+?]/g,mark);
+            
+            // 한글패턴
+            var hangul = "안녕하세요. 저는 james입니다.?? ㅋㅋㅋㅋ ㅏㅏㅏㅏ";
+            area.innerHTML = 
+                hangul.replace(/[ㄱ-ㅎㅏ-ㅣ가-힣??]/g, mark);
+        }
+    </script>
+
+
+
+    
+</body>
+</html>

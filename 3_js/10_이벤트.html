@@ -12,7 +12,14 @@
         background: tomato;
         text-align: center;
         padding: 20px;
+    }    
+    .boxx {
+        border: 1px solid #000;
+        padding: 20px;
     }
+    .box1 {background-color: yellowgreen;}
+    .box2 {background-color: green;}
+    .box3 {background-color: springgreen;}
     </style>
 </head>
 <body>
@@ -124,8 +131,12 @@
             if(userId.value.length < 4){
                 alert("유효한 아이디를 입력하세요!!");
                 userId.select();
-
-                return false;
+                // 각 태그가 가지고 있는 기본이벤트 호출을 막는 방법
+                // ex) form-> submit, a -> click
+                // 1. return false;
+                // 2. e.preventDefault();
+                e.preventDefault();
+                //return false;
             }
 
             // 2. 비밀번호
@@ -133,10 +144,32 @@
             if(pwd.value.length < 8){
                 alert("유효한 비번을 입력하세요!");
                 pwd.focus();
-                return false;
+                //return false;
+                e.preventDefault();
             }
         };
 
+    </script>
+
+    <h2>Event Propagation - Bubbling</h2>
+    <!--
+        이벤트 버블링
+         - 요소에 이벤트 핸들러가 작동하면 이어서 부모요소의 핸들러,
+           또 그 부모의 핸들러로 계속해서 이베트파 전파되는 행위를 의미한다.
+    -->
+    <div class="boxx box1" data-text="box1" onclick="displayMsg(event, this)">
+        <div class="boxx box2" data-text="box2" onclick="displayMsg(event, this)">
+            <div class="boxx box3" data-text="box3" onclick="displayMsg(event, this)"></div>       
+        </div>
+    </div>
+
+    <script>
+        function displayMsg(e, boxx){
+            console.log(boxx.dataset.text);
+
+            // 이벤트 버블링을 막기위한 메서드
+            e.stopPropagation();
+        }
     </script>
 
 

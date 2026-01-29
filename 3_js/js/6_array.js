@@ -260,7 +260,7 @@ test14.onclick = function(){
     // 존재하지 않는 경우 undefined반환
     console.log(findOne);
 
-    var filteredArray = objArr.filter(function(obj) {
+    var filteredArray = objArr.filter(function(obj, I, arr) {
         if(obj.id.includes('alsrudals2')){
             return true;
         }

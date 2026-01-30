@@ -59,15 +59,55 @@
             2) 등록 완료후 작성한 내용을 비워줄것 
         */
         function insertBoard(){
-           
+            var title = document.querySelector('input[name=title]');
+            var content = document.querySelector('textarea[name=content]');
+
+            if(!(title.value && content.value)){
+                alert('내용을 작성하세요');
+                return;
+            }
+            // <li>
+            //     <h5></h5>
+            //     <p></p>
+            // </li>    
+
+            var li = document.createElement('li');
+            var h5 = document.createElement('h5');
+            h5.innerText = title.value;
+
+            var p = document.createElement("p");
+            p.innerText = content.value;
+
+            li.append(h5, p);
+            boardList.appendChild(li);
+
+            title.value = "";
+            content.value= "";
         }
         
         /* 
-            게시글 검색기능. 게시글에 내가 입력한 내용이 포함된 게시글만 필터링 시켜서 보여주는 기능.
-            검색내용을 비워둔후 재검색 눌렀을때는 전체 게시글목록이 나와야함.
+            게시글 검색기능. 
+            게시글에 내가 입력한 내용이 포함된 게시글만 필터링 시켜서
+             보여주는 기능.
+            검색내용을 비워둔후 재검색 눌렀을때는 전체
+             게시글목록이 나와야함.
         */
         function searchTitle(){
-          
+            var list = document.querySelectorAll("#boardList > li");
+            var search = document.querySelector("input[name=search]").value;
+            var fiteredList = [];
+
+            for(var li of list){
+                var textContent = li.querySelector("h5").innerText;
+                li.style.display = "block";
+                if(!textContent.includes(search)){
+                    //fiteredList.push(li);
+                    // 이친구들만 보여야함
+                    li.style.display = "none";
+                }
+            }
+            console.log(fiteredList);
+
         }
     
     </script>

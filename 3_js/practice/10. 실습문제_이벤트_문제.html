@@ -31,11 +31,24 @@
   <div class="btn-wrapper">
     <button type="button" data-url='https://www.naver.com'>네이버</button>&nbsp;
     <button type="button" data-url='https://www.google.com'>구글</button>&nbsp;
-    <button type="button" data-url='https://www.iei.or.kr'>KH</button>&nbsp;
     <button type="button" data-url='https://www.w3schools.com'>와삼</button>
+    <button type="button" data-url='https://www.iei.or.kr'>KH</button>&nbsp;
   </div>
   <script>
-  
+    document.querySelector("#btn-generate").onclick = function(e){
+      var btns = document.querySelectorAll('.btn-wrapper > button');
+
+      for(var button of btns){
+        var btn = document.createElement("button");//<button></button>
+        btn.innerText = button.innerText;
+        btn.dataset.url = button.dataset.url;
+
+        btn.onclick = function(e){
+          location.assign(this.dataset.url);
+        }
+        document.querySelector(".btn-wrapper").appendChild(btn);
+      }
+    }
   </script>
 
 </body>

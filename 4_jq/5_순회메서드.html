@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@4.0.0/dist/jquery.min.js"></script>
+    <style>
+        .wrap, .wrap * {
+            border:1px solid lightgray;
+            display:block; /* span 이 블럭요소로 바뀐다. */
+            margin:15px;
+            padding:5px;
+            color:gray;
+        }
+    </style>
+</head>
+<body>
+    <h1>탐색(순회)메서드 (Traversing)</h1>
+    <h3>
+        * 조상 순회 메서드 : 기준이 되는 요소의 상위요소들을 선택할 수 있는 메서드
+    </h3>
+    
+    <div class="wrap"> 조상
+        <div> div (증조할머니)
+            <ul> ul (할머니)
+                <li> li (엄마)
+                    <span>span</span>
+                </li>
+            </ul>
+        </div>
+
+        <div>div (할아버지)
+            <p>p (아빠)
+                <span>span</span>
+            </p>
+        </div>
+    </div>
+
+    <pre>
+        parent()
+         - 선택된 요소의 상위요소 하나만을 선택
+        
+        parents()
+         - 선택된 요소의 상위요소들을 모두 선택 
+
+        parents("선택자")
+         - 선택된 요소들중 선택자와 일치하는 상위요소들만 선택
+
+        praentsUntil("선택자")
+         - 선택된 요소부터 제시한 값까지의 모든 상위요소들을 선택 
+    </pre>
+
+    <script>
+        $(function(){
+            // parent
+            // $("span").parent().css({color:'red', border:'2px solid red'});
+
+            // // parents
+            // $("li").parents().css("color",'blue');
+            // $("li").parents("div").css("border","2px solid magenta");
+
+            // $("span").parentsUntil("div").css('color','pink');
+        })
+    </script>
+
+    <h3>자손 순회 메서드 
+        - 기준이 되는 요소의 하위요소들을 선택할 수 있는 메서드
+    </h3>
+
+    <pre>
+        .children()
+         - 선택된 요소의 모든 자손요소들을 선택
+
+        .children('선택자')
+         - 선택된 요소의 자손요소들중 선택자와 일치하는 요소만을 선택 
+        
+        .find('선택자')
+         - 선택된 요소의 모든 후손요소들중 선택자와 일치하는 요소만을 선택
+    </pre>
+
+    <script>
+        $(function(){
+            // 앞으로 부여할 스타일 객체
+            var style1 = {color:"red", border:"2px solid red"};
+            var style2 = {color:"blue", border:"2px solid blue"};
+            var style3 = {color:"green", border:"2px solid green"};
+            var style4 = {color:"orange", border:"2px solid orange"};
+            var style5 = {color:"purple", border:"2px solid purple"};
+
+            // children()
+            $(".wrap").children().css(style1);
+            $(".wrap").children().children().css(style2);
+
+            // children('선택자')
+            $(".wrap").children().children("p").css(style3);
+
+            // find('선택자')
+            $(".wrap").find("li").css(style4);
+            $(".wrap").find("span").css(style5);
+        })
+    </script>
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+</body>
+</html>

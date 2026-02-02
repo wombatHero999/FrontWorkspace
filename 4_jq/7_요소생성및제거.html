@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> <!-- 온라인 방식 -->
+    <style>
+        .added {
+            color:palegreen;
+        }
+
+        .item {
+            background:yellowgreen;
+            width:100px;
+            height:100px;
+            line-height:100px;
+            text-align:center;
+            margin:5px;
+        }
+        .item span {
+            font-size:25px;
+            font-weight:bold;
+            color:white;
+        }
+
+        .lime {
+            background:lime;
+        }
+    </style>
+</head>
+<body>
+    <h1>요소 생성 및 제거</h1>
+    <h3>* 동적으로 요소 생성</h3>
+
+    <button id="btn">요소 생성</button>
+    <div id="area1"></div>
+
+    <script>
+        $(function(){
+            $("#btn").click(function(e){
+                // p태그를 동적으로 생성하기
+
+                // 1. 문자열로 생성
+                var el1 = "<p>Create Element By Text</p>";
+
+                // 2. Dom메서드로 생성(createElement) - js방식
+                var el2 = document.createElement("p");
+                var text = document.createTextNode("Create Element By Dom")
+                el2.appendChild(text);
+
+                // 3. jquery를 이용한 방법
+                var el3 = $("<p></p>").text("create Element By jQuery");
+
+                $("#area1").append(el1, el2, el3);
+            })
+        })
+    </script>
+
+    <hr>
+
+    <h3>* 삽입 관련 메서드 part 1</h3>
+
+    <p>
+        선택된 요소를 기준으로 새로이 생성된 요소를 추가하는 메서드 <br><br>
+
+        $(A).append(B) : A요소 내에 가장 뒷부분에 B를 자식으로 추가하는 메서드 <br>
+        $(A).prepend(B) : A요소 내에 가장 앞부분에 B를 추가 <br>
+        $(A).before(B) : A요소 앞에 B를 추가 (동위레벨로써) <br>
+        $(A).after(B) : A요소 뒤에 B를 추가(동위레벨로써) <br>
+    </p>
+
+    <p>
+        $(B).appendTo(A) : B를 A요소 내에 뒷부분에 추가(자손) <br>
+        $(B).prependTo(A) : B를 A요소 내에 앞부분에 추가(자손) <br>
+        $(B).insertBefore(A) : B를 A요소 앞에 추가(동위) <br>
+        $(B).insertAfter(A) : B를 A요소 뒤에 추가(동위)
+    </p>
+
+    <h1 id="test1"><span>A</span></h1>
+    <h1 id="test2"><span>A</span></h1>
+    <h1 id="test3"><span>A</span></h1>
+    <h1 id="test4"><span>A</span></h1>
+
+    <script>
+        $(function(){
+            var b = "<span class='added'>B</span>";
+            // $("#test1").append(b);
+            // $("#test2").prepend(b);
+            // $("#test3").before(b);
+            // $("#test4").after(b);
+
+            $(b).appendTo("#test1");
+            $(b).prependTo("#test2");
+            $(b).insertBefore("#test3");
+            $(b).insertAfter("#test4");
+        })
+    </script>
+
+    <hr>
+
+    <h3>*요소 객체 복제 메서드</h3>
+    <p>
+        var 변수 = $("선택자").clone(true/false) <br>
+         - 선택된 요소를 복제해서 반환해주는 메서드 <br>
+         - 매개변수로 true전달시 부여된 이벤트까지 복사하여 반환 <br>
+    </p>
+
+    <button id="clone">복제</button>
+
+    <div id="clone-test">
+        <div id="item1" class="item">
+            <span>안녕</span>
+        </div>
+    </div>
+
+    <div id="clone-result">
+
+    </div>
+
+    <script>
+        $(function(){
+            $(".item").hover(function(){
+                $(this).addClass("lime");
+            }, function(){
+                $(this).removeClass("lime");
+            });
+
+            $("#clone").click(function(){
+                var copy = $("#item1").clone(true);
+
+                //$("#clone-result").append(copy);
+
+                $("#item1").clone(true).appendTo("#clone-result");
+            });
+        })
+    </script>
+
+    <hr>
+
+    <h3>* 요소 객체 제거 및 잘라내기 메서드</h3>
+    <p>
+        $("선택자").empty() <br>
+         - 선택된 요소의 모든 하위 요소들을 제거시켜주는 메서드 <br>
+
+        var 변수 = $("선택자").remove() / .detach()  <br>
+         - 선택된 요소를 제거 후 , 제거된 요소를 반환하는 메서드 <br> 
+         - remove는 제거된 요소의 이벤트를 가져오지 않으며, detach()
+           는 제거된 요소의 이벤트 까지 가져온다 <br>
+    </p>
+
+    <button id="empty">empty</button>
+    <button id="remove">remove</button>
+    <button id="detach">detach</button>
+
+    <div id="remove-test" style="border:3px solid red; width:110px; height:110px;">
+    
+        <!-- 제거할 요소 -->
+        <div id="item2" class="item">
+            <span>안녕</span> 
+        </div>
+
+    </div>
+
+    <br>
+
+    <!-- 붙여넣기를 할 공간 -->
+    <div id="remove-result" style="border:3px dashed blue; width:110px; height:110px;">
+
+    </div> 
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

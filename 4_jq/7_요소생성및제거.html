@@ -169,6 +169,51 @@
 
     </div> 
 
+    <script>
+        $(function(){
+            $("#empty").click(function(){
+                $("#remove-test").empty();
+            });
+
+            $("#remove").click(function(){
+                var el = $("#item2").remove();
+                $("#remove-result").append(el);
+            });
+
+            $("#detach").click(function(){
+                $("#item2").detach().appendTo("#remove-result");
+            });
+        })
+    </script>
+
+    <!-- 
+        응용문제
+        복제 버튼 클릭 시 현재 버튼의 부모요소인 div 를 복제시켜서 result 에 붙여넣기
+        삭제 버튼 클릭 시 현재 버튼의 부모요소인 div 를 삭제시키기
+    -->
+    <div id="test" class="item">
+        <button class="copy">복제</button>
+        <button class="delete">삭제</button>
+    </div>
+
+    <div id="result">
+
+    </div>
+
+    <script>
+        $(function(){
+            $(".copy").click(function(){
+                $("#result").append($(this).parent().clone(true));
+            });
+
+            $(".delete").click(function(){
+                if($(".delete").length > 1) {
+                   $(this).parent().remove();
+                }
+            });
+        })
+    </script>
+
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
 </html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@4.0.0/dist/jquery.min.js"></script>
+</head>
+<body>
+    
+    <h1>이벤트 핸들러 연결 방법들</h1>
+
+    <h3>1. 이벤트 메서드를 통한 연결</h3>
+    <h4 id="test1">여길클릭하세요</h4>
+
+    <script>
+        $(function(){
+            $("#test1").click(function(){
+                $(this).html("여길 더블클릭해보세요");
+                $(this).dblclick(function(){
+                    $(this).html("수고하셨어요.");
+                })
+            })
+        })
+    </script>
+
+    <h3>2. on 메서드를 이용한 연결</h3>
+    <h4 id="test2">여기 마우스를 올려보세요</h4>
+
+    <script>
+        $(function(){
+            /* 
+                $("선택자").on("이벤트명", 이벤트핸들러)
+            */
+            $("#test2")
+                .on("mouseenter", function(){
+                    $(this).css("background","yellowgreen");
+                })
+                .on('click', function(){
+                    $(this)
+                        .off('mouseenter')
+                        .css('background','orangered');
+                });
+        })
+    </script>
+
+    <br><br>
+
+    <h3>3. on을 활용한 방법</h3>
+    <pre>
+        $("상위요소").on("이벤트명","하위요소",function(){
+            선택된 상위요소 안에 존재하는 하위요소에 이벤트가 발생했을 때
+            실행할 내용을 작성
+        });
+    </pre>
+
+    <div id="wrap">
+        <h4>h4클릭</h4>
+        <h5>h5클릭</h5>
+    </div>
+
+    <script>
+        $(function(){
+            //$("#wrap h4").on("click",function(){})
+            $("#wrap").on("click",'h4',function(){
+                $(this).html("안녕"); 
+            });
+
+            $(document).on('click','h4,h5', function(){
+                $(this).css('color','pink');
+            })
+        });
+    </script>
+
+    <h3>* 동적으로 생성된 요소에 , 기존요소와 동일한 이벤트를 적용시키고자
+        한다면, 반드시 3번방법대로 적용시켜야 한다.
+    </h3>
+
+    <div id="wrap2" style="border : 1px solid red">
+        <h6>처음부터 존재하는 요소</h6>
+    </div>
+
+    <script>
+        $(function(){
+            // 동적으로 생성된 요소에 대해서는 동일한 이벤트 적용이 불가능
+            // $("#wrap2>h6").click(function(){
+            //     $("#wrap2").append("<h6>동적으로 생성된 요소</h6>");
+            // });
+            // $("#wrap2>h6").on("click",function(){
+            //     $("#wrap2").append("<h6>동적으로 생성된 요소</h6>");
+            // });
+
+            // 방법 3. 동적으로 생성된 요소에 대해서도 동일한 이벤트 유지 가능
+            $("#wrap2").on('click','h6',function(){
+                $("#wrap2").append("<h6>동적으로 생성된 요소</h6>");
+            });
+        })
+    </script>
+
+    <hr>
+    <h3>* 일회성 이벤트 부여</h3>
+    <p>
+        이벤트를 딱 한번만 실행하고자 할 때 사용 <br>
+        $(선택자).one('이벤트명', function(){
+
+        })
+    </p>
+
+    <h6 id="test3">한번만 실행되는 이벤트</h6>
+    <script>
+        $(function(){
+            $("#test3").one("click",function(){
+                alert("처음이자 마지막으로 이벤트 발생..");
+            })
+        })
+    </script>
+
+
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

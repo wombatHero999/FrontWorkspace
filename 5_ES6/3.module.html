@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="module" src="./3. esm.js"></script>
+    <script type="module">
+        import {sayHi, abc} from "./3. esm.js";
+
+        sayHi();
+
+        //default값 가져오기
+        import mkmmmm from './3. esm.js';
+        console.log(mkmmmm);
+
+        import {sayHi as fn} from "./3. esm.js";
+        fn();
+    </script>
+</head>
+<body>    
+</body>
+</html>

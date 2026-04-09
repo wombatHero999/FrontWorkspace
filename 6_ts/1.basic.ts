@@ -51,7 +51,7 @@ numArr = [1,2,3,4,5];
 let numTuple:[number, number, number];
 numTuple = [1,2,3];
 //console.log(numTuple[3]); // 잘못된 인덱스 접근시 컴파일에러
-
+//numTuple.push(11);
 /* 
     4. readonly
      - 튜플은 배열이 가질 수 있는 값의 수와 타입을 정의한다.

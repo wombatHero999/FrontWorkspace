@@ -1,0 +1,62 @@
+import { useState } from "react";
+import { useForm } from "./useForm";
+
+export default function SingUpForm(){
+    /* 
+        사용자 정의 hook함수
+        - 여러 컴포넌트에서 공통으로 사용하는 로직을 모듈화 시켜서 관리하는
+        경우, 내부에 react의 hook함수가 포함된 경우 customHook이라고부른다.
+    */
+    // const [user , setUser] = useState({
+    //     userName : "",
+    //     email : "",
+    //     password : ""
+    // });
+
+    // const inputHandler = (e:React.ChangeEvent<HTMLInputElement>) => {
+    //     const {name, value} = e.target;
+    //     setUser((prev) => {
+    //         return {...prev , [name] : value};
+    //     });        
+    // };
+
+    // const handleSubmit = () => {
+    //     alert("회원가입에 성공했습니다.");
+    //     setUser({
+    //         userName : "",
+    //         email : "",
+    //         password : ""
+    //     });
+    // }
+    const [user, inputHandler, handleSubmit] = useForm({
+        userName : '',
+        email : '',
+        password : ''
+    });
+
+    return (
+    <>
+    <div className="form-container">
+      <h2>회원가입</h2>
+      <div className="form-group">
+        <label>아이디</label>
+        <input name="userName" value={user.userName} onChange={inputHandler} />
+      </div>
+      <div className="form-group">
+        <label>이메일</label>
+        <input name="email" value={user.email} onChange={inputHandler} />
+      </div>
+      <div className="form-group">
+        <label>비밀번호</label>
+        <input
+          type="password"
+          name="password"
+          value={user.password}
+          onChange={inputHandler}
+        />
+      </div>
+      <button className="submit-button" onClick={handleSubmit}>가입</button>    
+  </div>  
+  </>
+  );
+}

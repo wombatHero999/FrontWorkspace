@@ -19,5 +19,5 @@ export const initMenu:Menu = {
 // 메뉴 등록시 타입
 export type MenuCreate = Omit<Menu, 'id'>
 
-// 메뉴 수정시 타입
-
+// 메뉴 수정시 타입(patch)
+export type MenuUpdatePatch = Pick<Menu, 'id'> & Partial<Omit<Menu,'id'>>

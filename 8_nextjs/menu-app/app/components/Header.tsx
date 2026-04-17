@@ -26,6 +26,10 @@ export default function Header(){
                         <li className="nav-item">
                             <Link href="/menus/insert" className="nav-link">메뉴 추가</Link>
                         </li>
+
+                        <li className="nav-item">
+                            <Link href="/login" className="nav-link">로그인</Link>
+                        </li>
                     </ul>
                 </div>
             </div>

@@ -23,6 +23,54 @@ export async function middleware(request:NextRequest){
     const {pathname} = request.nextUrl;
     let response = NextResponse.next();
 
+    /*
+        1. 액세스 토큰은 만료되어 없으나, 리프레쉬 토큰만 남아 있는 경우
+         - 그대로 api요청을하면 401에러가 발생하므로, 미들웨어에서 쿠키 재발급요청을
+         보낼 예정이다.
+    */
+    if(!accessToken && refreshToken){
+        const refreshRes = await fetch(`http://localhost:8081/api/auth/refresh`,{
+                method:'POST',
+                headers:{'Cookie':`refreshToken=${refreshToken}`},
+            });
+        if(refreshRes.ok){
+            const setCookie = refreshRes.headers.get('set-cookie');
+
+            // 브라우저로 보낼 응답 생성
+            if(setCookie){
+                // 새로운 access, role쿠키 
+                const newAccessToken = setCookie.split(";").find( 
+                    c => c.trim().startsWith("accessToken="))?.split("=")[1];
+                const newRoles = setCookie.split(";").find( 
+                    c => c.trim().startsWith("userRoles="))?.split("=")[1];    
+                if(newAccessToken){
+                    accessToken = newAccessToken;
+
+                    // request헤더를 수정하여 서버컴포넌트로 쿠키 전달
+                    const requestHeaders = new Headers(request.headers);
+                    requestHeaders.set('x-new-access-token',newAccessToken);
+
+                    // 수정된 헤더를 가진 response객체 
+                    response = NextResponse.next({
+                        request: {
+                            headers:requestHeaders
+                        }
+                    });
+
+                    // 브라우저 쿠키 업데이트를 위한 set-cookie설정
+                    response.headers.set('set-cookie',setCookie);
+                }
+                if(newRoles) userRoles = decodeURIComponent(newRoles).split("|");
+            } else{
+             // 리프레시 실패시 쿠키 삭제 후 로그인 페이지 리디렉트
+             const response = NextResponse.redirect(new URL('/login',request.url))
+             response.cookies.delete('accessToken');
+             response.cookies.delete('refreshToken');
+             return response;
+            }            
+        }
+    }
+
     // 권한별 사용자 제어
     // 1) 비로그인 사용자(/menus/new, /menus/:id ... 이용 불가)
     const protectedPathPrefixes = ['/menus', '/admin'];

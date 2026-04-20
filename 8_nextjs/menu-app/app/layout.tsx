@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "./components/Header";
 import Providers from "./components/Providers";
+import UserInfoInitializer from "./components/UserInfoInitializer";
 /*
   #1. app/layout.tsx 
    - 최상위 공용 레이아웃으로 서버컴포넌트
@@ -28,6 +29,7 @@ export default function RootLayout({
         <div id="container">
            <Providers>
            <Header />
+           <UserInfoInitializer/>
            <section id="content">
              <div id="menu-container" className="text-center">
                {children}  
